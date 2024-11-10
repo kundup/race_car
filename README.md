@@ -1,1 +1,1 @@
-# race_car
+# race_car racing platform written by javascript
