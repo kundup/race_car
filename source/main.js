@@ -29,14 +29,12 @@ var trackGrid = [
 1,	0,	0,	0,	0,	0,	1,	1,	1,	0,	0,	0,	1,	1,	0,	0,	0,	0,	0,	1,
 1,	0,	0,	0,	0,	0,	1,	1,	1,	1,	1,	1,	1,	1,	1,	0,	0,	0,	1,	1,
 1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,
-
-]
+];
 
 window.onload = function () {
 
     game = document.getElementById ("racing_game");
     graph = game.getContext ("2d");
-
 
     setInterval (function () {
 
@@ -81,8 +79,7 @@ function moveEverything (){
 
         else if (tilex != pretilex){
             ballSpeedx *= -1;
-            Ballx += ballSpeedx;
-            
+            Ballx += ballSpeedx;            
         }        
     }
 }
@@ -98,13 +95,12 @@ function colorCirc (Ballx, Bally, radius, color) {
     graph.fillStyle = color;
     graph.arc (Ballx, Bally, radius, 0, Math.PI * 2, true);
     graph.fill();
-
 }
 
 function drawbricks (){
     for (let i = 0; i < trackRowNumber; i++){
         for (let j = 0; j < trackColNumber; j++){
-            var ind = j + trackColNumber * i
+            var ind = j + trackColNumber * i;
             if (trackGrid[ind] === 1) {
                 colorRect (j * trackwidth, i * trackheight, trackwidth - trackGap, trackheight - trackGap, "green");
             }            
