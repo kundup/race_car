@@ -46,13 +46,11 @@ window.onload = function () {
         drawEverything();
         moveEverything();
 
-    }, 1000/framePerSecond); 
-    
+    }, 1000/framePerSecond);     
     
     carPic.onload = function (){
         carLoaded = true;
     }
-    
     carPic.src = "player1.png"
 }
 
@@ -102,9 +100,6 @@ function colorRect (cordx, cordy, sizex, sizey, color) {
     graph.fillRect (cordx, cordy, sizex, sizey);
 }
 
-
-
-
 function drawbricks (){
     for (let i = 0; i < trackRowNumber; i++){
         for (let j = 0; j < trackColNumber; j++){
@@ -116,11 +111,9 @@ function drawbricks (){
     }  
 }
 
-function carDraw () {
-    
+function carDraw () {    
     
     angular += 0.2;
-
     if (carLoaded) {
 
         graph.save();
@@ -129,6 +122,4 @@ function carDraw () {
         graph.drawImage(carPic,-carPic.width/2,-carPic.height/2);
         graph.restore();
     }
-
-
 }
