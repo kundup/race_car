@@ -55,11 +55,10 @@ window.onload = function () {
 }
 
 function drawEverything() {
-    colorRect (0, 0, game.width, game.height, "black");
+    colorRect (0, 0, game.width, game.height, "black");    
     
-    carDraw();
-    drawbricks();    
-
+    drawbricks(); 
+    carDraw(); 
 }
 
 function moveEverything (){
@@ -111,15 +110,23 @@ function drawbricks (){
     }  
 }
 
-function carDraw () {    
-    
+function carDraw () {
     angular += 0.2;
-    if (carLoaded) {
-
-        graph.save();
-        graph.translate(carX,carY);
-        graph.rotate(angular);
-        graph.drawImage(carPic,-carPic.width/2,-carPic.height/2);
-        graph.restore();
+    if (carLoaded){
+        drawPicAngular (carPic, carX, carY, angular);
     }
 }
+
+function drawPicAngular (pic, posx, posy, ang){
+
+        graph.save();
+        graph.translate(posx, posy);
+        graph.rotate(ang);
+        graph.drawImage(pic, -pic.width/2, -pic.height/2);
+        graph.restore();
+}
+
+
+
+
+// chapter 8 continue
