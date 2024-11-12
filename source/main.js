@@ -3,9 +3,9 @@ console.log("merhaba");
 
 var game;
 var graph;
-var Ballx = 150;
-var Bally = 120;
-var ballSpeedx = 4, ballSpeedy = 4;
+var carX = 150;
+var carY = 120;
+var carSpeedx = 4, carSpeedy = 4;
 const radius = 10;
 const framePerSecond = 50;
 const trackColNumber = 20;
@@ -31,6 +31,11 @@ var trackGrid = [
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 ];
 
+var carPic = document.createElement("img");
+var carLoaded = false;
+var angular = 0;
+
+
 window.onload = function () {
 
     game = document.getElementById ("racing_game");
@@ -41,45 +46,53 @@ window.onload = function () {
         drawEverything();
         moveEverything();
 
-    }, 1000/framePerSecond);    
+    }, 1000/framePerSecond); 
+    
+    
+    carPic.onload = function (){
+        carLoaded = true;
+    }
+    
+    carPic.src = "player1.png"
 }
 
 function drawEverything() {
     colorRect (0, 0, game.width, game.height, "black");
-    colorCirc (Ballx, Bally, radius, "white");
+    
+    carDraw();
+    drawbricks();    
 
-    drawbricks();
 }
 
 function moveEverything (){
 
-    Ballx += ballSpeedx;
-    Bally += ballSpeedy; 
+    carX += carSpeedx;
+    carY += carSpeedy; 
     
-    var tilex = Math.floor(Ballx / trackwidth);
-    var tiley = Math.floor(Bally / trackheight);    
+    var tilex = Math.floor(carX / trackwidth);
+    var tiley = Math.floor(carY / trackheight);    
     var trackindex = tilex + trackColNumber * tiley;
 
-    var preballx = Ballx - ballSpeedx;
-    var prebally = Bally - ballSpeedy;
+    var preballx = carX - carSpeedx;
+    var prebally = carY - carSpeedy;
     var pretilex = Math.floor(preballx / trackwidth);
     var pretiley = Math.floor(prebally / trackheight);
 
     if (trackGrid[trackindex] === 1) {        
         
         if (tilex != pretilex && tiley != pretiley ){
-            ballSpeedy *= -1;
-            ballSpeedx *= -1;             
+            carSpeedy *= -1;
+            carSpeedx *= -1;             
         } 
         
         else if (tiley != pretiley) {
-            ballSpeedy *= -1;
-            Bally += ballSpeedy;             
+            carSpeedy *= -1;
+            carY += carSpeedy;             
         }
 
         else if (tilex != pretilex){
-            ballSpeedx *= -1;
-            Ballx += ballSpeedx;            
+            carSpeedx *= -1;
+            carX += carSpeedx;            
         }        
     }
 }
@@ -89,13 +102,8 @@ function colorRect (cordx, cordy, sizex, sizey, color) {
     graph.fillRect (cordx, cordy, sizex, sizey);
 }
 
-function colorCirc (Ballx, Bally, radius, color) {
 
-    graph.beginPath();
-    graph.fillStyle = color;
-    graph.arc (Ballx, Bally, radius, 0, Math.PI * 2, true);
-    graph.fill();
-}
+
 
 function drawbricks (){
     for (let i = 0; i < trackRowNumber; i++){
@@ -106,4 +114,21 @@ function drawbricks (){
             }            
         }
     }  
+}
+
+function carDraw () {
+    
+    
+    angular += 0.2;
+
+    if (carLoaded) {
+
+        graph.save();
+        graph.translate(carX,carY);
+        graph.rotate(angular);
+        graph.drawImage(carPic,-carPic.width/2,-carPic.height/2);
+        graph.restore();
+    }
+
+
 }
