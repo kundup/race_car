@@ -40,7 +40,7 @@ const KEY_ARROW_RIGHT = 39;
 const KEY_ARROW_DOWN = 40;
 
 function keyPressed(evt) {
-    
+
     document.getElementById("debugging").innerHTML = "keypressed: " + evt.keyCode;
     if (evt.keyCode == KEY_ARROW_UP) {
         carSpeed += 1;
