@@ -14,71 +14,72 @@ const trackwidth = 40;
 const trackheight = 40;
 const trackGap = 1;
 var trackGrid = [
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
-1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,
-1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,
-1,0,0,1,1,0,0,1,1,1,1,1,0,0,0,1,1,0,0,1,
-1,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,1,
-1,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,1,
-1,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,
-1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,
-1,0,0,1,0,0,1,1,0,0,0,0,0,1,0,0,1,0,0,1,
-1,1,1,1,0,0,1,1,0,0,0,0,0,1,0,0,0,0,0,1,
-1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,1,
-1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+    1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+    1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1,
+    1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1,
+    1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+    1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+    1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+    1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+    1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+    1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
 
 var carPic = document.createElement("img");
 var carLoaded = false;
 var angular = 0;
 
-function keyPressed (evt) {
+function keyPressed(evt) {
     document.getElementById("debugging").innerHTML = "keypressed: " + evt.keyCode;
 }
 
-function keyreleased (evt) {
+function keyreleased(evt) {
     document.getElementById("debugging").innerHTML = "keyreleased: " + evt.keyCode;
 }
 
 
 window.onload = function () {
 
-    game = document.getElementById ("racing_game");
-    graph = game.getContext ("2d");
+    game = document.getElementById("racing_game");
+    graph = game.getContext("2d");
+
 
     addEventListener("keydown", keyPressed);
     addEventListener("keyup", keyreleased);
 
-    setInterval (function () {
+    setInterval(function () {
 
         drawEverything();
         moveEverything();
 
-    }, 1000/framePerSecond);     
-    
-    carPic.onload = function (){
+    }, 1000 / framePerSecond);
+
+    carPic.onload = function () {
         carLoaded = true;
     }
     carPic.src = "player1.png"
 }
 
 function drawEverything() {
-    colorRect (0, 0, game.width, game.height, "black");    
-    
-    drawbricks(); 
-    carDraw(); 
+    colorRect(0, 0, game.width, game.height, "black");
+
+    drawbricks();
+    carDraw();
 }
 
-function moveEverything (){
+function moveEverything() {
 
     carX += carSpeedx;
-    carY += carSpeedy; 
-    
+    carY += carSpeedy;
+
     var tilex = Math.floor(carX / trackwidth);
-    var tiley = Math.floor(carY / trackheight);    
+    var tiley = Math.floor(carY / trackheight);
     var trackindex = tilex + trackColNumber * tiley;
 
     var preballx = carX - carSpeedx;
@@ -86,58 +87,58 @@ function moveEverything (){
     var pretilex = Math.floor(preballx / trackwidth);
     var pretiley = Math.floor(prebally / trackheight);
 
-    if (trackGrid[trackindex] === 1) {        
-        
-        if (tilex != pretilex && tiley != pretiley ){
+    if (trackGrid[trackindex] === 1) {
+
+        if (tilex != pretilex && tiley != pretiley) {
             carSpeedy *= -1;
-            carSpeedx *= -1;             
-        } 
-        
+            carSpeedx *= -1;
+        }
+
         else if (tiley != pretiley) {
             carSpeedy *= -1;
-            carY += carSpeedy;             
+            carY += carSpeedy;
         }
 
-        else if (tilex != pretilex){
+        else if (tilex != pretilex) {
             carSpeedx *= -1;
-            carX += carSpeedx;            
-        }        
+            carX += carSpeedx;
+        }
     }
 }
 
-function colorRect (cordx, cordy, sizex, sizey, color) {
+function colorRect(cordx, cordy, sizex, sizey, color) {
     graph.fillStyle = color;
-    graph.fillRect (cordx, cordy, sizex, sizey);
+    graph.fillRect(cordx, cordy, sizex, sizey);
 }
 
-function drawbricks (){
-    for (let i = 0; i < trackRowNumber; i++){
-        for (let j = 0; j < trackColNumber; j++){
+function drawbricks() {
+    for (let i = 0; i < trackRowNumber; i++) {
+        for (let j = 0; j < trackColNumber; j++) {
             var ind = j + trackColNumber * i;
             if (trackGrid[ind] === 1) {
-                colorRect (j * trackwidth, i * trackheight, trackwidth - trackGap, trackheight - trackGap, "green");
-            }            
+                colorRect(j * trackwidth, i * trackheight, trackwidth - trackGap, trackheight - trackGap, "green");
+            }
         }
-    }  
-}
-
-function carDraw () {
-    angular += 0.2;
-    if (carLoaded){
-        drawPicAngular (carPic, carX, carY, angular);
     }
 }
 
-function drawPicAngular (pic, posx, posy, ang){
+function carDraw() {
+    angular += 0.2;
+    if (carLoaded) {
+        drawPicAngular(carPic, carX, carY, angular);
+    }
+}
 
-        graph.save();
-        graph.translate(posx, posy);
-        graph.rotate(ang);
-        graph.drawImage(pic, -pic.width/2, -pic.height/2);
-        graph.restore();
+function drawPicAngular(pic, posx, posy, ang) {
+
+    graph.save();
+    graph.translate(posx, posy);
+    graph.rotate(ang);
+    graph.drawImage(pic, -pic.width / 2, -pic.height / 2);
+    graph.restore();
 }
 
 
 
 
-// chapter 8 continue
+// chapter 9 continue
