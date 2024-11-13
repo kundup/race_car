@@ -35,11 +35,22 @@ var carPic = document.createElement("img");
 var carLoaded = false;
 var angular = 0;
 
+function keyPressed (evt) {
+    document.getElementById("debugging").innerHTML = "keypressed: " + evt.keyCode;
+}
+
+function keyreleased (evt) {
+    document.getElementById("debugging").innerHTML = "keyreleased: " + evt.keyCode;
+}
+
 
 window.onload = function () {
 
     game = document.getElementById ("racing_game");
     graph = game.getContext ("2d");
+
+    addEventListener("keydown", keyPressed);
+    addEventListener("keyup", keyreleased);
 
     setInterval (function () {
 
