@@ -39,30 +39,49 @@ const KEY_ARROW_LEFT = 37;
 const KEY_ARROW_RIGHT = 39;
 const KEY_ARROW_DOWN = 40;
 
+var key_held_gas = false;
+var key_held_reverse = false;
+var key_held_left = false;
+var key_held_right = false;
+
+
 function keyPressed(evt) {
 
     document.getElementById("debugging").innerHTML = "keypressed: " + evt.keyCode;
 
     if (evt.keyCode == KEY_ARROW_UP) {
-        carSpeed += 1;
-
-    } else if (evt.keyCode == KEY_ARROW_DOWN) {
-        carSpeed -= 1;
+        key_held_gas = true;
     }
-    else if (evt.keyCode == KEY_ARROW_RIGHT) {
-        angular += Math. PI * 0.25;
+    if (evt.keyCode == KEY_ARROW_DOWN) {
+        key_held_reverse = true;
     }
-
-    else if (evt.keyCode == KEY_ARROW_LEFT) {
-        angular += Math. PI * -0.25;
-
+    if (evt.keyCode == KEY_ARROW_LEFT) {
+        key_held_left = true;
     }
-
+    if (evt.keyCode == KEY_ARROW_RIGHT) {
+        key_held_right = true;
+    }
     evt.preventDefault();
 }
 
 function keyreleased(evt) {
     document.getElementById("debugging").innerHTML = "keyreleased: " + evt.keyCode;
+
+    if (evt.keyCode == KEY_ARROW_UP) {
+        key_held_gas = false
+    }
+    if (evt.keyCode == KEY_ARROW_DOWN) {
+        key_held_reverse = false
+    }
+
+    if (evt.keyCode == KEY_ARROW_LEFT) {
+        key_held_left = false
+    }
+
+    if (evt.keyCode == KEY_ARROW_RIGHT) {
+        key_held_right = false
+    }
+
 }
 
 
@@ -97,9 +116,22 @@ function drawEverything() {
 
 function moveEverything() {
 
+    if (key_held_gas) {
+        carSpeed += 0.2;
+    }
+    if (key_held_reverse) {
+        carSpeed += -0.2;
+    }
+    if (key_held_left) {
+        angular += -0.02 * Math.PI;
+    }
+    if (key_held_right) {
+        angular += 0.02 * Math.PI;
+    }
 
-    carX += Math.cos(angular) * carSpeed
-    carY += Math.sin(angular) * carSpeed
+
+    carX += Math.cos(angular) * carSpeed;
+    carY += Math.sin(angular) * carSpeed;
 
     // var tilex = Math.floor(carX / trackwidth);
     // var tiley = Math.floor(carY / trackheight);
@@ -164,4 +196,4 @@ function drawPicAngular(pic, posx, posy, ang) {
 
 
 
-// chapter 10 continue
+// chapter 12 continue
