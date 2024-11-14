@@ -1,6 +1,12 @@
 console.log("hello world");
 console.log("merhaba");
 
+
+const GROUNDSPEED = 0.95;
+const DRIVE_POWER = 0.3;
+const REVERSE_POWER = 0.2;
+const TURN_RATE = 0.03;
+const MIN_TURN_SPEED = 0.5;
 var game;
 var graph;
 var carX = 450;
@@ -48,40 +54,24 @@ var key_held_right = false;
 function keyPressed(evt) {
 
     document.getElementById("debugging").innerHTML = "keypressed: " + evt.keyCode;
+    setKeyHold(evt.keyCode, true);
 
-    if (evt.keyCode == KEY_ARROW_UP) {
-        key_held_gas = true;
-    }
-    if (evt.keyCode == KEY_ARROW_DOWN) {
-        key_held_reverse = true;
-    }
-    if (evt.keyCode == KEY_ARROW_LEFT) {
-        key_held_left = true;
-    }
-    if (evt.keyCode == KEY_ARROW_RIGHT) {
-        key_held_right = true;
-    }
     evt.preventDefault();
 }
 
 function keyreleased(evt) {
     document.getElementById("debugging").innerHTML = "keyreleased: " + evt.keyCode;
+    setKeyHold(evt.keyCode, false);
 
-    if (evt.keyCode == KEY_ARROW_UP) {
-        key_held_gas = false
-    }
-    if (evt.keyCode == KEY_ARROW_DOWN) {
-        key_held_reverse = false
-    }
+}
 
-    if (evt.keyCode == KEY_ARROW_LEFT) {
-        key_held_left = false
-    }
 
-    if (evt.keyCode == KEY_ARROW_RIGHT) {
-        key_held_right = false
-    }
-
+function setKeyHold (thiskey, setto) {
+    if (thiskey == KEY_ARROW_UP) key_held_gas = setto;
+    if (thiskey == KEY_ARROW_DOWN) key_held_reverse = setto;
+    if (thiskey == KEY_ARROW_LEFT) key_held_left = setto;
+    if (thiskey == KEY_ARROW_RIGHT) key_held_right = setto;
+        
 }
 
 
@@ -117,21 +107,28 @@ function drawEverything() {
 function moveEverything() {
 
     if (key_held_gas) {
-        carSpeed += 0.2;
+        carSpeed += DRIVE_POWER;
     }
     if (key_held_reverse) {
-        carSpeed += -0.2;
+        carSpeed += -REVERSE_POWER;
     }
-    if (key_held_left) {
-        angular += -0.02 * Math.PI;
-    }
-    if (key_held_right) {
-        angular += 0.02 * Math.PI;
-    }
+
+    if (Math.abs(carSpeed) > MIN_TURN_SPEED){
+
+        if (key_held_left) {
+            angular += -TURN_RATE * Math.PI;
+        }
+        if (key_held_right) {
+            angular += TURN_RATE * Math.PI;
+        }
+
+    }    
 
 
     carX += Math.cos(angular) * carSpeed;
     carY += Math.sin(angular) * carSpeed;
+
+    carSpeed = carSpeed * GROUNDSPEED
 
     // var tilex = Math.floor(carX / trackwidth);
     // var tiley = Math.floor(carY / trackheight);
@@ -196,4 +193,4 @@ function drawPicAngular(pic, posx, posy, ang) {
 
 
 
-// chapter 12 continue
+// chapter 13 continue
