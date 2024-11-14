@@ -42,11 +42,20 @@ const KEY_ARROW_DOWN = 40;
 function keyPressed(evt) {
 
     document.getElementById("debugging").innerHTML = "keypressed: " + evt.keyCode;
+
     if (evt.keyCode == KEY_ARROW_UP) {
         carSpeed += 1;
 
     } else if (evt.keyCode == KEY_ARROW_DOWN) {
         carSpeed -= 1;
+    }
+    else if (evt.keyCode == KEY_ARROW_RIGHT) {
+        angular += Math. PI * 0.25;
+    }
+
+    else if (evt.keyCode == KEY_ARROW_LEFT) {
+        angular += Math. PI * -0.25;
+
     }
 
     evt.preventDefault();
