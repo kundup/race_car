@@ -5,12 +5,12 @@ console.log("merhaba");
 const GROUNDSPEED = 0.95;
 const DRIVE_POWER = 0.3;
 const REVERSE_POWER = 0.2;
-const TURN_RATE = 0.03;
-const MIN_TURN_SPEED = 0.5;
+const TURN_RATE = 0.02;
+const MIN_TURN_SPEED = 0.4;
 var game;
 var graph;
-var carX = 450;
-var carY = 300;
+var carX;
+var carY;
 var carSpeed = 0
 const radius = 10;
 const framePerSecond = 50;
@@ -30,16 +30,20 @@ var trackGrid = [
     1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
     1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
     1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
-    1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+    1, 0, 2, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1,
     1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
     1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1,
     1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
 
+const Track_Road = 0;
+const Player = 2;
+const Wall = 1;
+
 var carPic = document.createElement("img");
 var carLoaded = false;
-var angular = 0;
+var angular = -0.5 * Math.PI;
 const KEY_ARROW_UP = 38;
 const KEY_ARROW_LEFT = 37;
 const KEY_ARROW_RIGHT = 39;
@@ -80,7 +84,6 @@ window.onload = function () {
     game = document.getElementById("racing_game");
     graph = game.getContext("2d");
 
-
     addEventListener("keydown", keyPressed);
     addEventListener("keyup", keyreleased);
 
@@ -95,6 +98,8 @@ window.onload = function () {
         carLoaded = true;
     }
     carPic.src = "player1.png"
+
+    carReset();
 }
 
 function drawEverything() {
@@ -190,7 +195,20 @@ function drawPicAngular(pic, posx, posy, ang) {
     graph.restore();
 }
 
+function carReset() {
+    for (let i = 0; i < trackColNumber * trackRowNumber; i++ ) {
+        if (trackGrid [i] == Player) {
+            var tileX = i % trackColNumber;
+            var tileY = Math.floor(i / trackColNumber);
+            carX = tileX * trackwidth + trackwidth * 0.5;
+            carY = tileY * trackheight;
+            trackGrid[i] = Track_Road;
+            break;
+        } 
+    }
+}
 
 
 
-// chapter 13 continue
+
+// chapter 14 continue
