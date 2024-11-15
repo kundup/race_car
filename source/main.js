@@ -192,4 +192,4 @@ function checkfortruck(pixelx, pixely) {
 
 }
 
-// chapter 16 continue
+// chapter 17 continue
