@@ -129,9 +129,16 @@ function moveEverything() {
 
     }    
 
+    var nextX = carX + Math.cos(angular) * carSpeed;
+    var nextY = carY + Math.sin(angular) * carSpeed;
 
-    carX += Math.cos(angular) * carSpeed;
-    carY += Math.sin(angular) * carSpeed;
+    if( checkfortruck(nextX,nextY) ) { 
+        carX = nextX; 
+        carY = nextY;
+     } else { 
+        carSpeed = -0.5 * carSpeed; 
+
+     }
 
     carSpeed = carSpeed * GROUNDSPEED
 
@@ -208,7 +215,21 @@ function carReset() {
     }
 }
 
+function checkfortruck (pixelx, pixely){
+
+    var tilecol = Math.floor(pixelx / trackwidth);
+    var tilerow = Math.floor(pixely / trackheight);
+
+    var trackindex = tilecol + tilerow * trackColNumber;
+    return (trackGrid[trackindex] == Track_Road); 
 
 
 
-// chapter 14 continue
+
+
+}
+
+
+
+
+// chapter 15 continue
