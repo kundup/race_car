@@ -1,7 +1,6 @@
 console.log("hello world");
 console.log("merhaba");
 
-
 const GROUNDSPEED = 0.95;
 const DRIVE_POWER = 0.3;
 const REVERSE_POWER = 0.2;
@@ -69,15 +68,12 @@ function keyreleased(evt) {
 
 }
 
-
-function setKeyHold (thiskey, setto) {
+function setKeyHold(thiskey, setto) {
     if (thiskey == KEY_ARROW_UP) key_held_gas = setto;
     if (thiskey == KEY_ARROW_DOWN) key_held_reverse = setto;
     if (thiskey == KEY_ARROW_LEFT) key_held_left = setto;
     if (thiskey == KEY_ARROW_RIGHT) key_held_right = setto;
-        
 }
-
 
 window.onload = function () {
 
@@ -118,7 +114,7 @@ function moveEverything() {
         carSpeed += -REVERSE_POWER;
     }
 
-    if (Math.abs(carSpeed) > MIN_TURN_SPEED){
+    if (Math.abs(carSpeed) > MIN_TURN_SPEED) {
 
         if (key_held_left) {
             angular += -TURN_RATE * Math.PI;
@@ -127,47 +123,18 @@ function moveEverything() {
             angular += TURN_RATE * Math.PI;
         }
 
-    }    
+    }
 
     var nextX = carX + Math.cos(angular) * carSpeed;
     var nextY = carY + Math.sin(angular) * carSpeed;
 
-    if( checkfortruck(nextX,nextY) ) { 
-        carX = nextX; 
+    if (checkfortruck(nextX, nextY)) {
+        carX = nextX;
         carY = nextY;
-     } else { 
-        carSpeed = -0.5 * carSpeed; 
-
-     }
-
-    carSpeed = carSpeed * GROUNDSPEED
-
-    // var tilex = Math.floor(carX / trackwidth);
-    // var tiley = Math.floor(carY / trackheight);
-    // var trackindex = tilex + trackColNumber * tiley;
-
-    // var preballx = carX - carSpeedx;
-    // var prebally = carY - carSpeedy;
-    // var pretilex = Math.floor(preballx / trackwidth);
-    // var pretiley = Math.floor(prebally / trackheight);
-
-    // if (trackGrid[trackindex] === 1) {
-
-    //     if (tilex != pretilex && tiley != pretiley) {
-    //         carSpeedy *= -1;
-    //         carSpeedx *= -1;
-    //     }
-
-    //     else if (tiley != pretiley) {
-    //         carSpeedy *= -1;
-    //         carY += carSpeedy;
-    //     }
-
-    //     else if (tilex != pretilex) {
-    //         carSpeedx *= -1;
-    //         carX += carSpeedx;
-    //     }
-    // }
+    } else {
+        carSpeed = -0.5 * carSpeed;
+    }
+    carSpeed = carSpeed * GROUNDSPEED    
 }
 
 function colorRect(cordx, cordy, sizex, sizey, color) {
@@ -203,33 +170,26 @@ function drawPicAngular(pic, posx, posy, ang) {
 }
 
 function carReset() {
-    for (let i = 0; i < trackColNumber * trackRowNumber; i++ ) {
-        if (trackGrid [i] == Player) {
+    for (let i = 0; i < trackColNumber * trackRowNumber; i++) {
+        if (trackGrid[i] == Player) {
             var tileX = i % trackColNumber;
             var tileY = Math.floor(i / trackColNumber);
             carX = tileX * trackwidth + trackwidth * 0.5;
             carY = tileY * trackheight;
             trackGrid[i] = Track_Road;
             break;
-        } 
+        }
     }
 }
 
-function checkfortruck (pixelx, pixely){
+function checkfortruck(pixelx, pixely) {
 
     var tilecol = Math.floor(pixelx / trackwidth);
     var tilerow = Math.floor(pixely / trackheight);
 
     var trackindex = tilecol + tilerow * trackColNumber;
-    return (trackGrid[trackindex] == Track_Road); 
-
-
-
-
+    return (trackGrid[trackindex] == Track_Road);
 
 }
 
-
-
-
-// chapter 15 continue
+// chapter 16 continue
