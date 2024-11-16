@@ -4,7 +4,9 @@ function drawbricks() {
         for (let j = 0; j < trackColNumber; j++) {
             var ind = j + trackColNumber * i;
             if (trackGrid[ind] === 1) {
-                colorRect(j * trackwidth, i * trackheight, trackwidth - trackGap, trackheight - trackGap, "green");
+                graph.drawImage(trackWallPic, j* trackwidth, i * trackheight);            
+            } else {
+                graph.drawImage(trackRoadPic, j* trackwidth, i * trackheight);
             }
         }
     }
