@@ -8,10 +8,7 @@ const framePerSecond = 50;
 window.onload = function () {
 
     game = document.getElementById("racing_game");
-    graph = game.getContext("2d");
-
-    addEventListener("keydown", keyPressed);
-    addEventListener("keyup", keyreleased);
+    graph = game.getContext("2d");    
 
     setInterval(function () {
 
@@ -26,6 +23,8 @@ window.onload = function () {
     carPic.src = "player1.png"
 
     carReset();
+
+    initInPut()
 }
 
 
@@ -73,4 +72,4 @@ function colorRect(cordx, cordy, sizex, sizey, color) {
     graph.fillRect(cordx, cordy, sizex, sizey);
 }
 
-// chapter 17 continue
+// chapter 18 continue

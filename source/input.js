@@ -9,6 +9,11 @@ var key_held_reverse = false;
 var key_held_left = false;
 var key_held_right = false;
 
+function initInPut () {
+    addEventListener("keydown", keyPressed);
+    addEventListener("keyup", keyreleased);
+}
+
 function keyPressed(evt) {
     document.getElementById("debugging").innerHTML = "keypressed: " + evt.keyCode;
     setKeyHold(evt.keyCode, true);
@@ -25,5 +30,7 @@ function setKeyHold(thiskey, setto) {
     if (thiskey == KEY_ARROW_LEFT) key_held_left = setto;
     if (thiskey == KEY_ARROW_RIGHT) key_held_right = setto;
 }
+
+
 
 
