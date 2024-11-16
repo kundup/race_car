@@ -19,6 +19,11 @@ function drawPicAngular(pic, posx, posy, ang) {
     graph.restore();
 }
 
+function colorRect(cordx, cordy, sizex, sizey, color) {
+    graph.fillStyle = color;
+    graph.fillRect(cordx, cordy, sizex, sizey);
+}
+
 
 
 

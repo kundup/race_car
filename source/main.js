@@ -4,11 +4,17 @@ var game;
 var graph;
 const framePerSecond = 50;
 
-
 window.onload = function () {
 
     game = document.getElementById("racing_game");
-    graph = game.getContext("2d");    
+    graph = game.getContext("2d");
+    
+    loadingPicture();      
+}
+
+function loadingdone (){
+    carReset();
+    initInPut();
 
     setInterval(function () {
 
@@ -16,17 +22,7 @@ window.onload = function () {
         moveEverything();
 
     }, 1000 / framePerSecond);
-
-    carPic.onload = function () {
-        carLoaded = true;
-    }
-    carPic.src = "player1.png"
-
-    carReset();
-
-    initInPut()
 }
-
 
 function moveEverything() {
 
@@ -67,9 +63,6 @@ function drawEverything() {
     carDraw();
 }
 
-function colorRect(cordx, cordy, sizex, sizey, color) {
-    graph.fillStyle = color;
-    graph.fillRect(cordx, cordy, sizex, sizey);
-}
+
 
 // chapter 18 continue
