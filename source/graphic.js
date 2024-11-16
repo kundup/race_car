@@ -1,15 +1,35 @@
 
+
 function drawbricks() {
     for (let i = 0; i < trackRowNumber; i++) {
         for (let j = 0; j < trackColNumber; j++) {
             var ind = j + trackColNumber * i;
-            if (trackGrid[ind] === 1) {
-                graph.drawImage(trackWallPic, j* trackwidth, i * trackheight);            
-            } else {
-                graph.drawImage(trackRoadPic, j* trackwidth, i * trackheight);
+            var useimage;
+            var tracktype = trackGrid[ind];
+            switch (tracktype){
+                case Track_Road:
+                    useimage = trackRoadPic;
+                    break;
+                case Player:
+                    useimage = carPic;
+                    break;
+                case Flag:
+                    useimage = trackFlag;
+                    break;
+                case Tree:
+                    useimage = trackTree;
+                    break;
+                case Goal:
+                    useimage = trackGoal;
+                    break;
+                case Wall:
+                    useimage = trackWallPic;
+
             }
+            graph.drawImage(useimage, j * trackwidth, i * trackheight);           
         }
     }
+
 }
 
 function drawPicAngular(pic, posx, posy, ang) {
