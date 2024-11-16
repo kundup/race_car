@@ -7,9 +7,9 @@ function loadingPicture() {
 
     var imagelist = [
 
-        { pic: trackWallPic, sourc: "track_wall.png" },
-        { pic: trackRoadPic, sourc: "track_road.png" },
-        { pic: carPic, sourc: "player1.png" },
+        { pic: trackWallPic, sourc: "images/track_wall.png" },
+        { pic: trackRoadPic, sourc: "images/track_road.png" },
+        { pic: carPic, sourc: "images/player1.png" },
 
     ]
 
