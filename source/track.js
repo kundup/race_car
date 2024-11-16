@@ -35,5 +35,4 @@ function checkfortruck(pixelx, pixely) {
 
     var trackindex = tilecol + tilerow * trackColNumber;
     return (trackGrid[trackindex] == Track_Road);
-
 }

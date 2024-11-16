@@ -13,7 +13,6 @@ function loadingPicture (){
 
     trackWallPic.onload = countdownbypictureloading;
     trackWallPic.src = "track_road.png"
-
 }
 
 function countdownbypictureloading (){

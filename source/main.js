@@ -63,6 +63,4 @@ function drawEverything() {
     carDraw();
 }
 
-
-
-// chapter 18 continue
+// chapter 19 continue

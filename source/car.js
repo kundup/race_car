@@ -1,4 +1,3 @@
-
 // car variable and constants
 const GROUNDSPEED = 0.95;
 const DRIVE_POWER = 0.3;
@@ -13,8 +12,7 @@ var carSpeed = 0;
 var angular = -0.5 * Math.PI;
 
 function carDraw() {   
-    drawPicAngular(carPic, carX, carY, angular);
-    
+    drawPicAngular(carPic, carX, carY, angular);    
 }
 
 function carReset() {
