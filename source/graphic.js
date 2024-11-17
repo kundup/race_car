@@ -24,6 +24,7 @@ function drawbricks() {
                     break;
                 case Wall:
                     useimage = trackWallPic;
+                    break;
 
             }
             graph.drawImage(useimage, j * trackwidth, i * trackheight);           
