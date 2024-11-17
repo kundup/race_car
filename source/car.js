@@ -11,7 +11,11 @@ class carClass {
         this.carX = 75;
         this.carY = 75;
         this.carSpeed = 0;
-        this.angular = -0.5 * Math.PI
+        this.angular = -0.5 * Math.PI;
+        this.key_held_gas = false;
+        this.key_held_reverse = false;
+        this.key_held_left = false;
+        this.key_held_right = false;
     }
 
     carReset () {
@@ -30,19 +34,19 @@ class carClass {
 
     carMove (){
 
-        if (key_held_gas) {
+        if (this.key_held_gas) {
             this.carSpeed += DRIVE_POWER;
         }
-        if (key_held_reverse) {
+        if (this.key_held_reverse) {
             this.carSpeed += -REVERSE_POWER;
         }
     
         if (Math.abs(this.carSpeed) > MIN_TURN_SPEED) {
     
-            if (key_held_left) {
+            if (this.key_held_left) {
                 this.angular += -TURN_RATE * Math.PI;
             }
-            if (key_held_right) {
+            if (this.key_held_right) {
                 this.angular += TURN_RATE * Math.PI;
             }
     
@@ -62,5 +66,13 @@ class carClass {
 
     carDraw() {   
         drawPicAngular(carPic, this.carX, this.carY, this.angular);    
+    }
+
+    setupcontrols (forwardkey, reversedkey, leftturnkey, rightturnkey) {
+
+        this.controlkeyforward = forwardkey;
+        this.controlkeyreverse = reversedkey;
+        this.controlkeyleft = leftturnkey;
+        this.controlkeyright = rightturnkey;
     }
 }

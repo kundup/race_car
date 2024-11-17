@@ -4,6 +4,7 @@ var game;
 var graph;
 const framePerSecond = 50;
 var	p1	= new carClass();
+var	p2	= new carClass();
 
 window.onload = function () {
 
@@ -33,4 +34,4 @@ function drawEverything() {
     p1.carDraw();
 }
 
-// chapter 22 continue
+// chapter 25 continue
