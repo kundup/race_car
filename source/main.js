@@ -16,12 +16,15 @@ window.onload = function () {
 
 function loadingdone (){
     p1.carReset();
+    p2.carReset();
+
     initInPut();
 
     setInterval(function () {
 
         drawEverything();
         p1.carMove();
+        p2.carMove();
 
     }, 1000 / framePerSecond);
 }
@@ -32,6 +35,7 @@ function drawEverything() {
 
     drawbricks();
     p1.carDraw();
+    p2.carDraw()
 }
 
-// chapter 25 continue
+// chapter 26 continue
