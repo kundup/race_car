@@ -31,7 +31,7 @@ function loadingdone (){ // after images loaded the functions below run
 }
    
 function drawEverything() {
-    
+
     colorRect(0, 0, game.width, game.height, "black");
 
     drawbricks();
@@ -40,4 +40,4 @@ function drawEverything() {
     p2.carDraw(carPic2);
 }
 
-// chapter 28 continue
+// chapter 28 and 30 will be completed.
