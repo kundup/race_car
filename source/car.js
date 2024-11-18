@@ -64,8 +64,8 @@ class carClass {
         this.carSpeed *= GROUNDSPEED    
     }    
 
-    carDraw() {   
-        drawPicAngular(carPic, this.carX, this.carY, this.angular);    
+    carDraw(img) {   
+        drawPicAngular(img, this.carX, this.carY, this.angular);    
     }
 
     setupcontrols (forwardkey, reversedkey, leftturnkey, rightturnkey) {

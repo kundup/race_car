@@ -1,6 +1,7 @@
 var countdown;
 
 var carPic = new Image();
+var carPic2 = new Image();
 var trackWallPic = new Image();
 var trackRoadPic = new Image();
 var trackTree = new Image();
@@ -13,6 +14,7 @@ function loadingPicture() {
     var imagelist = [
 
         { pic: carPic, sourc: "images/player1.png" },
+        { pic: carPic2, sourc: "images/player2.png" },
         { pic: trackWallPic, sourc: "images/track_wall.png" },
         { pic: trackRoadPic, sourc: "images/track_road.png" },        
         { pic: trackTree, sourc: "images/track_tree.png" },

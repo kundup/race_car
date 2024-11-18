@@ -15,8 +15,9 @@ window.onload = function () {
 }
 
 function loadingdone (){
-    p1.carReset();
+
     p2.carReset();
+    p1.carReset();   
 
     initInPut();
 
@@ -34,8 +35,8 @@ function drawEverything() {
     colorRect(0, 0, game.width, game.height, "black");
 
     drawbricks();
-    p1.carDraw();
-    p2.carDraw()
+    p1.carDraw(carPic);
+    p2.carDraw(carPic2);
 }
 
 // chapter 26 continue
